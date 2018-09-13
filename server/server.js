@@ -20,6 +20,16 @@ app.post('/todos', (req, res) => {
   }); 
 }); 
 
+
+// ¿Status 400 o 404?
+app.get('/todos', (req, res) => {
+  Todo.find().then((todos) => {
+    res.send({todos});
+  }, (e) => {
+    res.status(404).send(e); 
+  })
+});
+
 app.listen(3000, () => {
   console.log('Started on port 3000'); 
 }); 
